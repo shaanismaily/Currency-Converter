@@ -1,0 +1,88 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgb(0, 0, 0, 0.4);
+    overflow: hidden;
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    background-image: url(https://images.pexels.com/photos/14908011/pexels-photo-14908011.jpeg?cs=srgb&dl=pexels-ravi-roshan-2875998-14908011.jpg&fm=jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 0;
+}
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: inherit;
+    filter: blur(2px);
+    transform: scale(1.1); /* prevents edge blur cut */
+    z-index: -1;
+}
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: -1;
+}
+
+header {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #0d0a0a;
+    padding: 4px;
+    width: 100%;
+    color: whitesmoke;
+}
+.container {
+    padding: 46px;
+    color: #fff;
+    background-color: #0e0d0d;
+    max-width: 60%;
+    border-radius: 8px;
+    margin: auto;
+    margin-top: 10%;
+    display: flex;
+    gap: 26px;
+    font-weight: bold;
+    font-size: clamp(1.2rem, 2vw, 1.4rem);
+    backdrop-filter: blur(6px);
+    background-color: rgba(14, 13, 13, 0.75);
+    justify-content: center;
+}
+#amount {
+    width: 35%;
+}
+.results {
+    background-color: #b8f3b89f;
+    text-align: center;
+    margin: 28px auto;
+    padding: 12px;
+    max-width: 40%;
+    border-radius: 8px;
+    box-shadow: 0 2px 2px rgb(0, 0, 0, 0.2);
+}
+.result {
+    font-weight: bold;
+    background-color: #f5f1f1;
+    border-radius: 4px;
+    padding: 8px 4px;
+    max-width: 70%;
+    margin: auto;
+}
+
+@media (max-width: 600px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+        width: 90%;
+        gap: 16px;
+    }
+}
