@@ -50,15 +50,31 @@ header {
     margin: auto;
     margin-top: 10%;
     display: flex;
-    gap: 26px;
+    gap: 56px;
     font-weight: bold;
     font-size: clamp(1.2rem, 2vw, 1.4rem);
     backdrop-filter: blur(6px);
     background-color: rgba(14, 13, 13, 0.75);
     justify-content: center;
 }
+
+label {
+    width: 10%;
+    min-width: 55px;
+    text-align: right;
+}
+input, select {
+    background-color: white;
+    margin: auto;
+}
 #amount {
-    width: 35%;
+    width: 100%;
+}
+.convertingOptions {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
 }
 .results {
     background-color: #b8f3b89f;
@@ -82,7 +98,14 @@ header {
     .container {
         flex-direction: column;
         align-items: center;
-        width: 90%;
+        max-width: 90%;
         gap: 16px;
+    }
+    .results {
+        max-width: 85%;
+    }
+    #swap {
+        width: 14px;
+        height: 25px;
     }
 }
