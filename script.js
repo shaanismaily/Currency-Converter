@@ -21,29 +21,37 @@ function initCurrencies() {
     "https://v6.exchangerate-api.com/v6/56637c2e40ffb85ec91e5079/latest/INR";
 
   fetch(api)
-    .then((res) => res.json())
-    .then((data) => {
-      rates = data.conversion_rates;
+  .then((res) => {
+    if (!res.ok) {
+      throw new Error("API limit reached or server error");
+    }
+    return res.json();
+  })
+  .then((data) => {
+    if (!data.conversion_rates) {
+      throw new Error("Invalid API response");
+    }
 
-      populate(from, Object.keys(rates));
-      populate(to, Object.keys(rates));
+    rates = data.conversion_rates;
 
-      from.value = "INR";
-      to.value = "USD";
+    populate(from, Object.keys(rates));
+    populate(to, Object.keys(rates));
 
-      updated = data.time_last_update_utc;
-      const formattedDate = new Date(updated).toLocaleString("en-IN", {
-        day: "numeric",
-        month: "short",
-        year: "numeric",
-        hour: "2-digit",
-        minute: "2-digit",
-      });
-      lastUpdated.textContent = `Last updated: ${formattedDate}`;
+    from.value = "INR";
+    to.value = "USD";
 
-      convert(); // initial conversion
-    })
-    .catch((err) => console.log(err));
+    const updated = data.time_last_update_utc;
+    const formattedDate = new Date(updated).toLocaleString("en-IN");
+
+    lastUpdated.textContent = `Last updated: ${formattedDate}`;
+
+    convert();
+  })
+  .catch((err) => {
+    console.error(err);
+    result.textContent =
+      "⚠️ Currency service temporarily unavailable. Try again later.";
+  });
 }
 
 function populate(selectElement, currencies) {
