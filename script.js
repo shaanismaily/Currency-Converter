@@ -17,8 +17,7 @@ swap.addEventListener("click", () => {
 
 // Fetch currencies
 function initCurrencies() {
-  const api =
-    "https://v6.exchangerate-api.com/v6/56637c2e40ffb85ec91e5079/latest/INR";
+  const api = "https://open.er-api.com/v6/latest/INR";
 
   fetch(api)
   .then((res) => {
@@ -28,11 +27,11 @@ function initCurrencies() {
     return res.json();
   })
   .then((data) => {
-    if (!data.conversion_rates) {
+    if (!data.rates) {
       throw new Error("Invalid API response");
     }
 
-    rates = data.conversion_rates;
+    rates = data.rates;
 
     populate(from, Object.keys(rates));
     populate(to, Object.keys(rates));
